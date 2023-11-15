@@ -4,12 +4,19 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.os.StrictMode
 import android.util.Log
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +77,11 @@ class MainActivity : ComponentActivity() {
                 editor.apply()
                 Log.d("MainActivity", "SharedPreferences:checkboxState:${findViewById<CheckBox>(R.id.checkbox).isChecked}")
             }
+
+        findViewById<Button>(R.id.buttonWebService).setOnClickListener {
+            var result = WebService().execute().get()
+            Log.d("MainActivity", "WebService result: $result")
+        }
     }
 
     override fun onDestroy() {

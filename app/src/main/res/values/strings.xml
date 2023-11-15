@@ -10,4 +10,5 @@
     <string name="checkboxText">Start at boot</string>
     <string name="TV2_str_off">Arrêté</string>
     <string name="TV2_str_on">En cours</string>
+    <string name="buttonWebService">WebService</string>
 </resources>

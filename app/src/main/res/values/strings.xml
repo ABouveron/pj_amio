@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ProjectAMIO</string>
+    <string name="TV1_str">Service status:</string>
+    <string name="TV2_str">\???</string>
+    <string name="TV3_str">Last result:</string>
+    <string name="TV4_str">\???</string>
+    <string name="TV5_str">Last alert:</string>
+    <string name="TV6_str">\???</string>
+    <string name="leftButton_str">ToggleButton</string>
+    <string name="checkboxText">Start at boot</string>
+    <string name="TV2_str_off">Arrêté</string>
+    <string name="TV2_str_on">En cours</string>
+</resources>

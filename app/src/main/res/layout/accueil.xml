@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:id="@+id/linear_layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
             android:orientation="horizontal">
 
-        <TextView
+            <TextView
                 android:id="@+id/TV1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -20,18 +23,18 @@
                 android:textSize="30sp"
                 android:layout_weight="0.5" />
 
-        <TextView
+            <TextView
                 android:id="@+id/TV2"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="200dp"
                 android:gravity="center"
                 android:text="@string/TV2_str"
                 android:textSize="30sp"
                 android:layout_weight="0.5" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/linear_layout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +42,7 @@
             android:orientation="horizontal"
             android:layout_below="@id/linear_layout1">
 
-        <TextView
+            <TextView
                 android:id="@+id/TV3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,18 +51,18 @@
                 android:textSize="30sp"
                 android:layout_weight="0.5" />
 
-        <TextView
+            <TextView
                 android:id="@+id/TV4"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="200dp"
                 android:gravity="center"
                 android:text="@string/TV4_str"
                 android:textSize="30sp"
                 android:layout_weight="0.5" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/linear_layout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +70,7 @@
             android:orientation="horizontal"
             android:layout_below="@id/linear_layout2">
 
-        <TextView
+            <TextView
                 android:id="@+id/TV5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -76,18 +79,18 @@
                 android:textSize="30sp"
                 android:layout_weight="0.5" />
 
-        <TextView
+            <TextView
                 android:id="@+id/TV6"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="200dp"
                 android:gravity="center"
                 android:text="@string/TV6_str"
                 android:textSize="30sp"
                 android:layout_weight="0.5" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/layout_button"
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -95,20 +98,20 @@
             android:gravity="center"
             android:layout_below="@id/linear_layout3">
 
-        <Switch
+            <Switch
                 android:id="@+id/leftButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-        <Switch
+            <Switch
                 android:id="@+id/rightButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp" />
+                android:layout_marginStart="200dp" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/layout_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,13 +119,13 @@
             android:layout_below="@id/layout_button"
             android:layout_marginTop="25dp">
 
-        <CheckBox
+            <CheckBox
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/checkboxText" />
 
-        <Button
+            <Button
                 android:id="@+id/buttonWebService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,34 +133,119 @@
                 android:layout_marginEnd="10dp"
                 android:text="@string/buttonWebService" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linear_layout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:orientation="horizontal"
-        android:layout_below="@id/layout_checkbox">
-
-        <TextView
-            android:id="@+id/WebServiceDisplay0"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linear_layout4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/WebServiceDisplay0_str"
-            android:textSize="30sp"
-            android:layout_weight="0.5" />
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_below="@id/layout_checkbox">
 
-        <TextView
-            android:id="@+id/WebServiceDisplayValue0"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/WebServiceDisplayValue0_str"
-            android:textSize="30sp"
-            android:layout_weight="0.5" />
+            <TextView
+                android:id="@+id/WebServiceDisplay0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplay0_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/WebServiceDisplayValue0"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplayValue0_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_below="@id/linear_layout4">
+
+            <TextView
+                android:id="@+id/WebServiceDisplay1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplay1_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
+
+            <TextView
+                android:id="@+id/WebServiceDisplayValue1"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplayValue1_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_below="@id/linear_layout5">
+
+            <TextView
+                android:id="@+id/WebServiceDisplay2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplay2_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
+
+            <TextView
+                android:id="@+id/WebServiceDisplayValue2"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplayValue2_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_below="@id/linear_layout6">
+
+            <TextView
+                android:id="@+id/WebServiceDisplay3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplay3_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
+
+            <TextView
+                android:id="@+id/WebServiceDisplayValue3"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:text="@string/WebServiceDisplayValue3_str"
+                android:textSize="30sp"
+                android:layout_weight="0.5" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

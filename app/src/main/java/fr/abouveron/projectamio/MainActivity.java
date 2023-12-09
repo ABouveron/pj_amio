@@ -75,6 +75,9 @@ public class MainActivity extends ComponentActivity {
                 });
 
         TextView stringLight0 = findViewById(R.id.WebServiceDisplayValue0);
+        TextView stringLight1 = findViewById(R.id.WebServiceDisplayValue1);
+        TextView stringLight2 = findViewById(R.id.WebServiceDisplayValue2);
+        TextView stringLight3 = findViewById(R.id.WebServiceDisplayValue3);
         findViewById(Button.class, R.id.buttonWebService).setOnClickListener(v -> {
             try {
                 String result = new WebService().execute().get();
@@ -84,6 +87,9 @@ public class MainActivity extends ComponentActivity {
                     Log.d("MainActivity", String.format("%s at %s: %s", s.label, s.timestamp, s.value));
                 }
                 stringLight0.setText(String.valueOf(jsonResult.data.get(0).value));
+                stringLight1.setText(String.valueOf(jsonResult.data.get(1).value));
+                stringLight2.setText(String.valueOf(jsonResult.data.get(2).value));
+                stringLight3.setText(String.valueOf(jsonResult.data.get(3).value));
             } catch (Exception e) {
                 e.printStackTrace();
             }

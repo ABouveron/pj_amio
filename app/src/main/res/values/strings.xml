@@ -11,6 +11,12 @@
     <string name="TV2_str_off">Arrêté</string>
     <string name="TV2_str_on">En cours</string>
     <string name="buttonWebService">WebService</string>
-    <string name="WebServiceDisplay_str">Light capteur</string>
-    <string name="WebServiceDisplayValue_str">\???</string>
+    <string name="WebServiceDisplay0_str">Light mote0</string>
+    <string name="WebServiceDisplayValue0_str">\???</string>
+    <string name="WebServiceDisplay1_str">Light mote1</string>
+    <string name="WebServiceDisplayValue1_str">\???</string>
+    <string name="WebServiceDisplay2_str">Light mote2</string>
+    <string name="WebServiceDisplayValue2_str">\???</string>
+    <string name="WebServiceDisplay3_str">Light mote3</string>
+    <string name="WebServiceDisplayValue3_str">\???</string>
 </resources>

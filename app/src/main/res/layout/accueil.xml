@@ -141,20 +141,20 @@
         android:layout_below="@id/layout_checkbox">
 
         <TextView
-            android:id="@+id/WebServiceDisplay"
+            android:id="@+id/WebServiceDisplay0"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/WebServiceDisplay_str"
+            android:text="@string/WebServiceDisplay0_str"
             android:textSize="30sp"
             android:layout_weight="0.5" />
 
         <TextView
-            android:id="@+id/WebServiceDisplayValue"
+            android:id="@+id/WebServiceDisplayValue0"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:gravity="center"
-            android:text="@string/WebServiceDisplayValue_str"
+            android:text="@string/WebServiceDisplayValue0_str"
             android:textSize="30sp"
             android:layout_weight="0.5" />
 

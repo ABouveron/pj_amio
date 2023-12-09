@@ -1,15 +1,12 @@
 package fr.abouveron.projectamio;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -45,45 +42,36 @@ public class MainActivity extends ComponentActivity {
 
         TextView stringTV2 = findViewById(R.id.TV2);
         findViewById(Switch.class, R.id.leftButton)
-                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            Log.d("MainActivity", "leftIsChecked");
-                            startService(serviceIntent);
-                            stringTV2.setText(getString(R.string.TV2_str_on));
-                        } else {
-                            Log.d("MainActivity", "leftIsNotChecked");
-                            stopService(serviceIntent);
-                            stringTV2.setText(getString(R.string.TV2_str_off));
-                        }
+                .setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        Log.d("MainActivity", "leftIsChecked");
+                        startService(serviceIntent);
+                        stringTV2.setText(getString(R.string.TV2_str_on));
+                    } else {
+                        Log.d("MainActivity", "leftIsNotChecked");
+                        stopService(serviceIntent);
+                        stringTV2.setText(getString(R.string.TV2_str_off));
                     }
                 });
 
         findViewById(Switch.class, R.id.rightButton)
-                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            Log.d("MainActivity", "rightIsChecked");
-                            startService(serviceIntent);
-                        } else {
-                            Log.d("MainActivity", "rightIsNotChecked");
-                            stopService(serviceIntent);
-                        }
+                .setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        Log.d("MainActivity", "rightIsChecked");
+                        startService(serviceIntent);
+                    } else {
+                        Log.d("MainActivity", "rightIsNotChecked");
+                        stopService(serviceIntent);
                     }
                 });
 
         findViewById(CheckBox.class, R.id.checkbox)
-                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Log.d("MainActivity", "SharedPreferences:checkboxState:" + isChecked);
-                        getSharedPreferences("settings", MODE_PRIVATE)
-                                .edit()
-                                .putBoolean("checkboxState", isChecked)
-                                .apply();
-                    }
+                .setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    Log.d("MainActivity", "SharedPreferences:checkboxState:" + isChecked);
+                    getSharedPreferences("settings", MODE_PRIVATE)
+                            .edit()
+                            .putBoolean("checkboxState", isChecked)
+                            .apply();
                 });
 
         TextView stringLight = findViewById(R.id.WebServiceDisplayValue);

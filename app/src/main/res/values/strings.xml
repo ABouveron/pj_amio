@@ -11,4 +11,6 @@
     <string name="TV2_str_off">Arrêté</string>
     <string name="TV2_str_on">En cours</string>
     <string name="buttonWebService">WebService</string>
+    <string name="WebServiceDisplay_str">Light capteur</string>
+    <string name="WebServiceDisplayValue_str">\???</string>
 </resources>

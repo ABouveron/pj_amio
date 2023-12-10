@@ -1,5 +1,6 @@
 package fr.abouveron.projectamio;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -64,10 +65,14 @@ public class WebService extends AsyncTask<String, Void, String> {
             return;
         }
 
-        TextView stringLight0 = activity.findViewById(R.id.WebServiceDisplayValue0);
-        TextView stringLight1 = activity.findViewById(R.id.WebServiceDisplayValue1);
-        TextView stringLight2 = activity.findViewById(R.id.WebServiceDisplayValue2);
-        TextView stringLight3 = activity.findViewById(R.id.WebServiceDisplayValue3);
+        TextView stringLight0 = activity.findViewById(R.id.WebServiceDisplay0);
+        TextView stringLightValue0 = activity.findViewById(R.id.WebServiceDisplayValue0);
+        TextView stringLight1 = activity.findViewById(R.id.WebServiceDisplay1);
+        TextView stringLightValue1 = activity.findViewById(R.id.WebServiceDisplayValue1);
+        TextView stringLight2 = activity.findViewById(R.id.WebServiceDisplay2);
+        TextView stringLightValue2 = activity.findViewById(R.id.WebServiceDisplayValue2);
+        TextView stringLight3 = activity.findViewById(R.id.WebServiceDisplay3);
+        TextView stringLightValue3 = activity.findViewById(R.id.WebServiceDisplayValue3);
 
         Log.d("MainActivity", "WebService result: " + result);
         JsonResult jsonResult = new Gson().fromJson(result, JsonResult.class);
@@ -75,9 +80,25 @@ public class WebService extends AsyncTask<String, Void, String> {
             Log.d("MainActivity", String.format("%s at %s: %s: %s", s.label, s.timestamp, s.value, s.getState()));
         }
 
-        stringLight0.setText(String.valueOf(jsonResult.data.get(0).value));
-        stringLight1.setText(String.valueOf(jsonResult.data.get(1).value));
-        stringLight2.setText(String.valueOf(jsonResult.data.get(2).value));
-        stringLight3.setText(String.valueOf(jsonResult.data.get(3).value));
+        if (jsonResult.data.get(0).getState()) {
+            stringLight0.setTextColor(Color.parseColor("#FF0000"));
+            stringLightValue0.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (jsonResult.data.get(1).getState()) {
+            stringLight1.setTextColor(Color.parseColor("#FF0000"));
+            stringLightValue1.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (jsonResult.data.get(2).getState()) {
+            stringLight2.setTextColor(Color.parseColor("#FF0000"));
+            stringLightValue2.setTextColor(Color.parseColor("#FF0000"));
+        }
+        if (jsonResult.data.get(3).getState()) {
+            stringLight3.setTextColor(Color.parseColor("#FF0000"));
+            stringLightValue3.setTextColor(Color.parseColor("#FF0000"));
+        }
+        stringLightValue0.setText(String.valueOf(jsonResult.data.get(0).value));
+        stringLightValue1.setText(String.valueOf(jsonResult.data.get(1).value));
+        stringLightValue2.setText(String.valueOf(jsonResult.data.get(2).value));
+        stringLightValue3.setText(String.valueOf(jsonResult.data.get(3).value));
     }
 }

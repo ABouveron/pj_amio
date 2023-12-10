@@ -70,8 +70,19 @@ public class WebService extends AsyncTask<String, Void, String> {
 
         Log.d("MainActivity", "WebService result: " + result);
         JsonResult jsonResult = new Gson().fromJson(result, JsonResult.class);
+        JsonResults.addJsonResult(jsonResult);
+
+        int ctr = 0;
         for (SensorsData s : jsonResult.data){
             Log.d("MainActivity", String.format("%s at %s: %s: %s", s.label, s.timestamp, s.value, s.getState()));
+            int nbResults = JsonResults.getJsonResults().size();
+            if (nbResults >= 2) {
+                double previousValue = JsonResults.getJsonResults().get(nbResults - 2).data.get(ctr).value;
+                if (previousValue >= (s.value + 50) || previousValue <= (s.value - 50)) {
+                    NotificationTemplate.createNotification(AppContext.getMainActivity(), "Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.");
+                }
+                ctr ++;
+            }
         }
 
         if (jsonResult.data.get(0).getState()) {

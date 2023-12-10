@@ -1,8 +1,11 @@
 package fr.abouveron.projectamio;
 
+import static fr.abouveron.projectamio.NotificationTemplate.PERMISSION_REQUEST_CODE;
+
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -18,6 +21,7 @@ public class MainActivity extends ComponentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppContext.setMainActivity(this);
+        NotificationTemplate.createNotificationChannel(this);
         Log.d("MainActivity", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil);
@@ -88,5 +92,21 @@ public class MainActivity extends ComponentActivity {
 
     private <T> T findViewById(Class<T> viewClass, int id) {
         return viewClass.cast(findViewById(id));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                NotificationTemplate.createNotification(
+                        this,
+                        "Nouveau message",
+                        "Vous avez un nouveau message."
+                );
+            } else {
+                Log.d("MainActivity", "Permission denied");
+            }
+        }
     }
 }

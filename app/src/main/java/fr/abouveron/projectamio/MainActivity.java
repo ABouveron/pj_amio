@@ -13,11 +13,6 @@ import android.widget.TextView;
 import androidx.activity.ComponentActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.gson.Gson;
-
-import fr.abouveron.projectamio.JsonModel.JsonResult;
-import fr.abouveron.projectamio.JsonModel.SensorsData;
-
 public class MainActivity extends ComponentActivity {
 
     @Override
@@ -74,22 +69,9 @@ public class MainActivity extends ComponentActivity {
                             .apply();
                 });
 
-        TextView stringLight0 = findViewById(R.id.WebServiceDisplayValue0);
-        TextView stringLight1 = findViewById(R.id.WebServiceDisplayValue1);
-        TextView stringLight2 = findViewById(R.id.WebServiceDisplayValue2);
-        TextView stringLight3 = findViewById(R.id.WebServiceDisplayValue3);
         findViewById(Button.class, R.id.buttonWebService).setOnClickListener(v -> {
             try {
-                String result = new WebService().execute().get();
-                Log.d("MainActivity", "WebService result: " + result);
-                JsonResult jsonResult = new Gson().fromJson(result, JsonResult.class);
-                for (SensorsData s : jsonResult.data){
-                    Log.d("MainActivity", String.format("%s at %s: %s", s.label, s.timestamp, s.value));
-                }
-                stringLight0.setText(String.valueOf(jsonResult.data.get(0).value));
-                stringLight1.setText(String.valueOf(jsonResult.data.get(1).value));
-                stringLight2.setText(String.valueOf(jsonResult.data.get(2).value));
-                stringLight3.setText(String.valueOf(jsonResult.data.get(3).value));
+                new WebService(this).execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }

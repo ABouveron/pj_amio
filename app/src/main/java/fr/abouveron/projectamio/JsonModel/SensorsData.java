@@ -5,4 +5,8 @@ public class SensorsData {
     public String label;
     public double value;
     public double mote;
+
+    public boolean getState() {
+        return this.value >= 240;
+    }
 }

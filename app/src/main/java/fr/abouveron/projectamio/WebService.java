@@ -72,7 +72,7 @@ public class WebService extends AsyncTask<String, Void, String> {
         Log.d("MainActivity", "WebService result: " + result);
         JsonResult jsonResult = new Gson().fromJson(result, JsonResult.class);
         for (SensorsData s : jsonResult.data){
-            Log.d("MainActivity", String.format("%s at %s: %s", s.label, s.timestamp, s.value));
+            Log.d("MainActivity", String.format("%s at %s: %s: %s", s.label, s.timestamp, s.value, s.getState()));
         }
 
         stringLight0.setText(String.valueOf(jsonResult.data.get(0).value));

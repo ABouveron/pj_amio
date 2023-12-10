@@ -10,7 +10,6 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -18,11 +17,6 @@ import fr.abouveron.projectamio.JsonModel.JsonResult;
 import fr.abouveron.projectamio.JsonModel.SensorsData;
 
 public class WebService extends AsyncTask<String, Void, String> {
-    private final WeakReference<MainActivity> activityReference;
-
-    public WebService(MainActivity activity) {
-        this.activityReference = new WeakReference<>(activity);
-    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -60,8 +54,8 @@ public class WebService extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
-        MainActivity activity = activityReference.get();
-        if (activity == null || activity.isFinishing()) {
+        MainActivity activity = AppContext.getMainActivity();
+        if (activity == null) {
             return;
         }
 

@@ -16,16 +16,13 @@ public class MainService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        MainActivity mainActivity = AppContext.getMainActivity();
         temps = 0;
 
         handler = new Handler(Looper.getMainLooper());
         runnable = new Runnable() {
             @Override
             public void run() {
-                if (mainActivity != null) {
-                    new WebService(mainActivity).execute();
-                }
+                new WebService().execute();
                 Toast.makeText(
                         getApplicationContext(),
                         Integer.toString(temps),

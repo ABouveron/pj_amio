@@ -72,7 +72,7 @@ public class MainActivity extends ComponentActivity {
 
         findViewById(Button.class, R.id.buttonWebService).setOnClickListener(v -> {
             try {
-                new WebService(this).execute();
+                new WebService().execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }

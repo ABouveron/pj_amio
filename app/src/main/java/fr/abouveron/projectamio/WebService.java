@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
 
 import fr.abouveron.projectamio.JsonModel.JsonResult;
 import fr.abouveron.projectamio.JsonModel.SensorsData;
@@ -75,13 +76,18 @@ public class WebService extends AsyncTask<String, Void, String> {
         int ctr = 0;
         for (SensorsData s : jsonResult.data){
             Log.d("MainActivity", String.format("%s at %s: %s: %s", s.label, s.timestamp, s.value, s.getState()));
-            int nbResults = JsonResults.getJsonResults().size();
-            if (nbResults >= 2) {
-                double previousValue = JsonResults.getJsonResults().get(nbResults - 2).data.get(ctr).value;
-                if (previousValue >= (s.value + 50) || previousValue <= (s.value - 50)) {
-                    NotificationTemplate.createNotification(AppContext.getMainActivity(), "Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.");
+            Calendar rightNow = Calendar.getInstance();
+            int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = rightNow.get(Calendar.MINUTE);
+            if (currentHour >= 18 && currentHour < 23 || (currentHour == 23 && currentMinute == 0)) {
+                int nbResults = JsonResults.getJsonResults().size();
+                if (nbResults >= 2) {
+                    double previousValue = JsonResults.getJsonResults().get(nbResults - 2).data.get(ctr).value;
+                    if (previousValue >= (s.value + 50) || previousValue <= (s.value - 50)) {
+                        NotificationTemplate.createNotification(AppContext.getMainActivity(), "Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.");
+                    }
+                    ctr++;
                 }
-                ctr ++;
             }
         }
 

@@ -85,6 +85,7 @@ public class WebService extends AsyncTask<String, Void, String> {
                     double previousValue = JsonResults.getJsonResults().get(nbResults - 2).data.get(ctr).value;
                     if (previousValue >= (s.value + 50) || previousValue <= (s.value - 50)) {
                         NotificationTemplate.createNotification(AppContext.getMainActivity(), "Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.");
+                        new Email("xyz@example.com", "test", "testText").send();
                     }
                     ctr++;
                 }

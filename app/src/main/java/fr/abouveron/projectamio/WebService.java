@@ -1,7 +1,9 @@
 package fr.abouveron.projectamio;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -85,6 +87,8 @@ public class WebService extends AsyncTask<String, Void, String> {
                     double previousValue = JsonResults.getJsonResults().get(nbResults - 2).data.get(ctr).value;
                     if (previousValue >= (s.value + 50) || previousValue <= (s.value - 50)) {
                         NotificationTemplate.createNotification(AppContext.getMainActivity(), "Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.");
+                        Vibrator v = (Vibrator) AppContext.getMainActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        v.vibrate(1000);
                         new Email("xyz@example.com", "test", "testText").send();
                     }
                     ctr++;

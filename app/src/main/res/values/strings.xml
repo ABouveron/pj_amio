@@ -19,4 +19,6 @@
     <string name="WebServiceDisplayValue2_str">\???</string>
     <string name="WebServiceDisplay3_str">Light mote3</string>
     <string name="WebServiceDisplayValue3_str">\???</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="buttonSettings">Settings</string>
 </resources>

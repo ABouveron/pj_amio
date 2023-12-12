@@ -26,6 +26,7 @@ public class MainActivity extends ComponentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil);
         Intent serviceIntent = new Intent(this, MainService.class);
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
 
         BroadcastReceiver br = new MyBootBroadcastReceiver();
         IntentFilter filter = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
@@ -80,6 +81,10 @@ public class MainActivity extends ComponentActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
+
+        findViewById(Button.class, R.id.buttonSettings).setOnClickListener(v -> {
+            startActivity(settingsIntent);
         });
     }
 

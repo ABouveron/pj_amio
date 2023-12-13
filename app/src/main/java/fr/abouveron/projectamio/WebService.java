@@ -1,5 +1,6 @@
 package fr.abouveron.projectamio;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -9,6 +10,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
@@ -22,6 +24,12 @@ import fr.abouveron.projectamio.Utilities.Notification;
 import fr.abouveron.projectamio.Utilities.Vibrator;
 
 public class WebService extends AsyncTask<String, Void, String> {
+
+    private final WeakReference<Context> contextReference;
+
+    public WebService(Context context) {
+        this.contextReference = new WeakReference<>(context);
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -74,9 +82,9 @@ public class WebService extends AsyncTask<String, Void, String> {
                 if (nbResults >= 2) {
                     double previousValue = JsonResultsManager.getJsonResults().get(nbResults - 2).data.get(ctr).getValue();
                     if (previousValue >= (s.getValue() + 50) || previousValue <= (s.getValue() - 50)) {
-                        new Notification("Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.").send();
-                        new Vibrator().vibrate(1000);
-                        new Email("xyz@example.com", "test", "testText").send();
+                        new Notification("Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.", contextReference.get()).send();
+                        new Vibrator(contextReference.get()).vibrate(1000);
+                        new Email("xyz@example.com", "test", "testText", contextReference.get()).send();
                     }
                     ctr++;
                 }

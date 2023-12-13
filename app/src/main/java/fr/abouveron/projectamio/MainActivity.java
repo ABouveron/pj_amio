@@ -77,7 +77,7 @@ public class MainActivity extends ComponentActivity {
 
         findViewById(Button.class, R.id.buttonWebService).setOnClickListener(v -> {
             try {
-                new WebService().execute();
+                new WebService(this).execute();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -104,7 +104,7 @@ public class MainActivity extends ComponentActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == Notification.getPERMISSION_REQUEST_CODE()) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new Notification("Nouveau message","Vous avez un nouveau message.");
+                new Notification("Nouveau message","Vous avez un nouveau message.", this);
             } else {
                 Log.d("MainActivity", "Permission denied");
             }

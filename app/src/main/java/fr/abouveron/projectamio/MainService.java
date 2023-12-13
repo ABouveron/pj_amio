@@ -1,11 +1,15 @@
 package fr.abouveron.projectamio;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,7 +28,7 @@ public class MainService extends Service {
         runnable = new Runnable() {
             @Override
             public void run() {
-                new WebService().execute();
+                new WebService(getApplicationContext()).execute();
                 Toast.makeText(
                         getApplicationContext(),
                         Integer.toString(temps),
@@ -32,7 +36,7 @@ public class MainService extends Service {
                 ).show();
                 Log.d("MainService", Integer.toString(temps));
 
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(AppContext.getMainActivity());
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 for (String key : preferences.getAll().keySet()) {
                     Log.d("Preferences", key + " -> " + preferences.getAll().get(key));
                 }
@@ -50,6 +54,22 @@ public class MainService extends Service {
         Log.d("MainService", "onStartCommand");
         return START_STICKY;
     }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        Intent restartServiceIntent = new Intent(getApplicationContext(), getClass());
+        restartServiceIntent.setPackage(getPackageName());
+        PendingIntent restartServicePendingIntent = PendingIntent.getService(
+                getApplicationContext(), 1, restartServiceIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmService = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmService != null) {
+            alarmService.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, restartServicePendingIntent);
+        }
+
+        super.onTaskRemoved(rootIntent);
+    }
+
 
     @Override
     public IBinder onBind(Intent intent) {

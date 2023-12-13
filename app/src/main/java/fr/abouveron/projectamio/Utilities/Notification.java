@@ -24,15 +24,17 @@ public class Notification {
 
     private final String title;
     private final String content;
+    private final Context context;
 
-    public Notification(String title, String content) {
+    public Notification(String title, String content, Context context) {
         this.title = title;
         this.content = content;
+        this.context = context;
     }
 
     public void send() {
-        createNotificationChannel(AppContext.getMainActivity());
-        createNotification(AppContext.getMainActivity());
+        createNotificationChannel(this.context);
+        createNotification(this.context);
     }
 
     public static int getPERMISSION_REQUEST_CODE() {

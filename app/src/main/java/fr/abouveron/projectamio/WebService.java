@@ -1,11 +1,8 @@
 package fr.abouveron.projectamio;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Vibrator;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -16,8 +13,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 
-import fr.abouveron.projectamio.JsonModel.JsonResult;
-import fr.abouveron.projectamio.JsonModel.SensorsData;
+import fr.abouveron.projectamio.Utilities.Email;
+import fr.abouveron.projectamio.Utilities.JsonResults;
+import fr.abouveron.projectamio.Utilities.JsonResultsManager;
+import fr.abouveron.projectamio.Utilities.LightsManager;
+import fr.abouveron.projectamio.Utilities.MoteLight;
+import fr.abouveron.projectamio.Utilities.Notification;
+import fr.abouveron.projectamio.Utilities.Vibrator;
 
 public class WebService extends AsyncTask<String, Void, String> {
 
@@ -57,38 +59,23 @@ public class WebService extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
-        MainActivity activity = AppContext.getMainActivity();
-        if (activity == null) {
-            return;
-        }
-
-        TextView stringLight0 = activity.findViewById(R.id.WebServiceDisplay0);
-        TextView stringLightValue0 = activity.findViewById(R.id.WebServiceDisplayValue0);
-        TextView stringLight1 = activity.findViewById(R.id.WebServiceDisplay1);
-        TextView stringLightValue1 = activity.findViewById(R.id.WebServiceDisplayValue1);
-        TextView stringLight2 = activity.findViewById(R.id.WebServiceDisplay2);
-        TextView stringLightValue2 = activity.findViewById(R.id.WebServiceDisplayValue2);
-        TextView stringLight3 = activity.findViewById(R.id.WebServiceDisplay3);
-        TextView stringLightValue3 = activity.findViewById(R.id.WebServiceDisplayValue3);
-
         Log.d("MainActivity", "WebService result: " + result);
-        JsonResult jsonResult = new Gson().fromJson(result, JsonResult.class);
-        JsonResults.addJsonResult(jsonResult);
+        JsonResults jsonResults = new Gson().fromJson(result, JsonResults.class);
+        JsonResultsManager.addJsonResult(jsonResults);
 
         int ctr = 0;
-        for (SensorsData s : jsonResult.data){
-            Log.d("MainActivity", String.format("%s at %s: %s: %s", s.label, s.timestamp, s.value, s.getState()));
+        for (MoteLight s : jsonResults.data){
+            Log.d("MainActivity", String.format("%s at %s: %s: %s", s.getLabel(), s.getTimestamp(), s.getValue(), s.getState()));
             Calendar rightNow = Calendar.getInstance();
             int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
             int currentMinute = rightNow.get(Calendar.MINUTE);
             if (currentHour >= 18 && currentHour < 23 || (currentHour == 23 && currentMinute == 0)) {
-                int nbResults = JsonResults.getJsonResults().size();
+                int nbResults = JsonResultsManager.getJsonResults().size();
                 if (nbResults >= 2) {
-                    double previousValue = JsonResults.getJsonResults().get(nbResults - 2).data.get(ctr).value;
-                    if (previousValue >= (s.value + 50) || previousValue <= (s.value - 50)) {
-                        NotificationTemplate.createNotification(AppContext.getMainActivity(), "Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.");
-                        Vibrator v = (Vibrator) AppContext.getMainActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                        v.vibrate(1000);
+                    double previousValue = JsonResultsManager.getJsonResults().get(nbResults - 2).data.get(ctr).getValue();
+                    if (previousValue >= (s.getValue() + 50) || previousValue <= (s.getValue() - 50)) {
+                        new Notification("Changement de luminosité", "Une des motes a repéré un changement brutal de luminosité.").send();
+                        new Vibrator().vibrate(1000);
                         new Email("xyz@example.com", "test", "testText").send();
                     }
                     ctr++;
@@ -96,25 +83,17 @@ public class WebService extends AsyncTask<String, Void, String> {
             }
         }
 
-        if (jsonResult.data.get(0).getState()) {
-            stringLight0.setTextColor(Color.parseColor("#FF0000"));
-            stringLightValue0.setTextColor(Color.parseColor("#FF0000"));
+        if (AppContext.getMainActivity() != null) {
+            ctr = 0;
+            for (MoteLight s : jsonResults.data) {
+                new LightsManager().getStringLightsValues().get(ctr).setText(String.valueOf(s.getValue()));
+                if (s.getState()) {
+                    new LightsManager().getStringLights().get(ctr).setTextColor(Color.parseColor("#FF0000"));
+                    new LightsManager().getStringLightsValues().get(ctr).setTextColor(Color.parseColor("#FF0000"));
+                }
+                Log.d("MainActivity", "LightsManager: " + new LightsManager().getStringLights().get(ctr).getTextColors().toString());
+                ctr++;
+            }
         }
-        if (jsonResult.data.get(1).getState()) {
-            stringLight1.setTextColor(Color.parseColor("#FF0000"));
-            stringLightValue1.setTextColor(Color.parseColor("#FF0000"));
-        }
-        if (jsonResult.data.get(2).getState()) {
-            stringLight2.setTextColor(Color.parseColor("#FF0000"));
-            stringLightValue2.setTextColor(Color.parseColor("#FF0000"));
-        }
-        if (jsonResult.data.get(3).getState()) {
-            stringLight3.setTextColor(Color.parseColor("#FF0000"));
-            stringLightValue3.setTextColor(Color.parseColor("#FF0000"));
-        }
-        stringLightValue0.setText(String.valueOf(jsonResult.data.get(0).value));
-        stringLightValue1.setText(String.valueOf(jsonResult.data.get(1).value));
-        stringLightValue2.setText(String.valueOf(jsonResult.data.get(2).value));
-        stringLightValue3.setText(String.valueOf(jsonResult.data.get(3).value));
     }
 }

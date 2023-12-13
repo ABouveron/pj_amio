@@ -1,7 +1,9 @@
-package fr.abouveron.projectamio;
+package fr.abouveron.projectamio.Utilities;
 
 import android.content.Intent;
 import android.net.Uri;
+
+import fr.abouveron.projectamio.AppContext;
 
 public class Email {
     private final String receiver;

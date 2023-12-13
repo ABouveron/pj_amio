@@ -38,8 +38,6 @@ public class MainService extends Service {
                 }
 
                 temps += 5;
-
-                // Repeat after 5 seconds
                 handler.postDelayed(this, 5000);
             }
         };

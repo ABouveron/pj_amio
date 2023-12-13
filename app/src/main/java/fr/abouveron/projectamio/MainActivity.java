@@ -1,7 +1,5 @@
 package fr.abouveron.projectamio;
 
-import static fr.abouveron.projectamio.NotificationTemplate.PERMISSION_REQUEST_CODE;
-
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,27 +12,29 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.ComponentActivity;
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+
+import fr.abouveron.projectamio.Utilities.Notification;
 
 public class MainActivity extends ComponentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppContext.setMainActivity(this);
-        NotificationTemplate.createNotificationChannel(this);
         Log.d("MainActivity", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueil);
         Intent serviceIntent = new Intent(this, MainService.class);
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
 
-        BroadcastReceiver br = new MyBootBroadcastReceiver();
+        BroadcastReceiver br = new BootBroadcastReceiver();
         IntentFilter filter = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
         boolean listenToBroadcastsFromOtherApps = true;
         int receiverFlags = listenToBroadcastsFromOtherApps
                 ? ContextCompat.RECEIVER_EXPORTED
                 : ContextCompat.RECEIVER_NOT_EXPORTED;
-        ContextCompat.registerReceiver(getApplicationContext(), br, filter, receiverFlags);
+        ContextCompat.registerReceiver(this, br, filter, receiverFlags);
 
         getSharedPreferences("settings", MODE_PRIVATE)
                 .edit()
@@ -100,15 +100,11 @@ public class MainActivity extends ComponentActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
+        if (requestCode == Notification.getPERMISSION_REQUEST_CODE()) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                NotificationTemplate.createNotification(
-                        this,
-                        "Nouveau message",
-                        "Vous avez un nouveau message."
-                );
+                new Notification("Nouveau message","Vous avez un nouveau message.");
             } else {
                 Log.d("MainActivity", "Permission denied");
             }

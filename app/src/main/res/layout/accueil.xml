@@ -53,68 +53,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_layout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:orientation="horizontal"
-            android:layout_below="@id/linear_layout1">
-
-            <TextView
-                android:id="@+id/TV3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/TV3_str"
-                android:textSize="30sp"
-                android:layout_weight="0.5" />
-
-            <TextView
-                android:id="@+id/TV4"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:text="@string/TV4_str"
-                android:textSize="30sp"
-                android:layout_weight="0.5" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_layout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:orientation="horizontal"
-            android:layout_below="@id/linear_layout2">
-
-            <TextView
-                android:id="@+id/TV5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/TV5_str"
-                android:textSize="30sp"
-                android:layout_weight="0.5" />
-
-            <TextView
-                android:id="@+id/TV6"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:text="@string/TV6_str"
-                android:textSize="30sp"
-                android:layout_weight="0.5" />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/layout_button"
             android:orientation="horizontal"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_below="@id/linear_layout3">
+            android:layout_below="@id/linear_layout1">
 
             <Switch
                 android:id="@+id/leftButton"

@@ -1,7 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:title="Your Name"
-        android:key="username"
-        android:summary="Please provide your username">
-    </EditTextPreference>
+
+    <EditTextPreference
+        android:title="Votre email"
+        android:key="email"
+        android:summary="Email à notifier" />
+
+    <PreferenceCategory
+        android:title="Lundi - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="monday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du lundi" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="monday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du lundi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Mardi - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="tuesday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du mardi" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="tuesday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du mardi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Mercredi - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="wednesday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du mercredi" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="wednesday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du mercredi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Jeudi - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="thursday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du jeudi" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="thursday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du jeudi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Vendredi - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="friday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du vendredi" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="friday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du vendredi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Samedi - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="saturday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du samedi" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="saturday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du samedi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Dimanche - Plage horaire à surveiller">
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="sunday_start_time"
+            android:title="Heure de début"
+            android:defaultValue="08:00"
+            android:dialogTitle="Sélectionner l'heure de début de la plage horaire du dimanche" />
+
+        <fr.abouveron.projectamio.Utilities.TimePickerPreference
+            android:key="sunday_end_time"
+            android:title="Heure de fin"
+            android:defaultValue="17:00"
+            android:dialogTitle="Sélectionner l'heure de fin de la plage horaire du dimanche" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

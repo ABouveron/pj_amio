@@ -5,43 +5,32 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 public class MainService extends Service {
-    private int temps = 0;
     private Handler handler;
     private Runnable runnable;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        temps = 0;
+
+        Toast.makeText(
+                getApplicationContext(),
+                "Service started",
+                Toast.LENGTH_SHORT
+        ).show();
 
         handler = new Handler(Looper.getMainLooper());
         runnable = new Runnable() {
             @Override
             public void run() {
                 new WebService(getApplicationContext()).execute();
-                Toast.makeText(
-                        getApplicationContext(),
-                        Integer.toString(temps),
-                        Toast.LENGTH_SHORT
-                ).show();
-                Log.d("MainService", Integer.toString(temps));
-
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                for (String key : preferences.getAll().keySet()) {
-                    Log.d("Preferences", key + " -> " + preferences.getAll().get(key));
-                }
-
-                temps += 5;
                 handler.postDelayed(this, 5000);
             }
         };
@@ -81,5 +70,10 @@ public class MainService extends Service {
         super.onDestroy();
         handler.removeCallbacks(runnable);
         Log.d("MainService", "Service destroyed");
+        Toast.makeText(
+                getApplicationContext(),
+                "Service stopped",
+                Toast.LENGTH_SHORT
+        ).show();
     }
 }

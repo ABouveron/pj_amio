@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="15dp">
 
             <Button
                 android:id="@+id/buttonSettings"
@@ -44,7 +44,7 @@
             <TextView
                 android:id="@+id/TV2"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="50dp"
                 android:gravity="center"
                 android:text="@string/TV2_str"
                 android:textSize="30sp"
@@ -63,37 +63,8 @@
             <Switch
                 android:id="@+id/leftButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Switch
-                android:id="@+id/rightButton"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="200dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_checkbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_below="@id/layout_button"
-            android:layout_marginTop="25dp">
-
-            <CheckBox
-                android:id="@+id/checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/checkboxText" />
-
-            <Button
-                android:id="@+id/buttonWebService"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/buttonWebService" />
 
         </LinearLayout>
 
@@ -103,7 +74,7 @@
             android:layout_height="wrap_content"
             android:weightSum="1"
             android:orientation="horizontal"
-            android:layout_below="@id/layout_checkbox">
+            android:layout_below="@id/layout_button">
 
             <TextView
                 android:id="@+id/WebServiceDisplay0"
@@ -117,7 +88,7 @@
             <TextView
                 android:id="@+id/WebServiceDisplayValue0"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:gravity="center"
                 android:text="@string/WebServiceDisplayValue0_str"
                 android:textSize="30sp"
@@ -145,7 +116,7 @@
             <TextView
                 android:id="@+id/WebServiceDisplayValue1"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:gravity="center"
                 android:text="@string/WebServiceDisplayValue1_str"
                 android:textSize="30sp"
@@ -173,7 +144,7 @@
             <TextView
                 android:id="@+id/WebServiceDisplayValue2"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:gravity="center"
                 android:text="@string/WebServiceDisplayValue2_str"
                 android:textSize="30sp"
@@ -201,7 +172,7 @@
             <TextView
                 android:id="@+id/WebServiceDisplayValue3"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:gravity="center"
                 android:text="@string/WebServiceDisplayValue3_str"
                 android:textSize="30sp"

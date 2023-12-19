@@ -15,13 +15,13 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
         Log.d("MyBootBroadcastReceiver", "onReceive");
 
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            Intent serviceIntent = new Intent(context, MainService.class);
             SharedPreferences settings = context.getSharedPreferences("settings", MODE_PRIVATE);
-            boolean checkboxState = settings.getBoolean("checkboxState", false);
-            if (checkboxState) {
+            boolean startAtBoot = settings.getBoolean("startAtBoot", false);
+
+            if (startAtBoot) {
+                Intent serviceIntent = new Intent(context, MainService.class);
                 context.startService(serviceIntent);
             }
-            Log.d("MyBootBroadcastReceiver", "startService : " + checkboxState);
         }
     }
 }

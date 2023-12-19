@@ -11,5 +11,10 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+
+        findPreference("back_button").setOnPreferenceClickListener(preference -> {
+            finish();
+            return true;
+        });
     }
 }

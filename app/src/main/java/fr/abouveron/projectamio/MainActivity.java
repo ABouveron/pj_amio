@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -55,37 +54,7 @@ public class MainActivity extends ComponentActivity {
                     }
                 });
 
-        findViewById(Switch.class, R.id.rightButton)
-                .setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    if (isChecked) {
-                        Log.d("MainActivity", "rightIsChecked");
-                        startService(serviceIntent);
-                    } else {
-                        Log.d("MainActivity", "rightIsNotChecked");
-                        stopService(serviceIntent);
-                    }
-                });
-
-        findViewById(CheckBox.class, R.id.checkbox)
-                .setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    Log.d("MainActivity", "SharedPreferences:checkboxState:" + isChecked);
-                    getSharedPreferences("settings", MODE_PRIVATE)
-                            .edit()
-                            .putBoolean("checkboxState", isChecked)
-                            .apply();
-                });
-
-        findViewById(Button.class, R.id.buttonWebService).setOnClickListener(v -> {
-            try {
-                new WebService(this).execute();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        findViewById(Button.class, R.id.buttonSettings).setOnClickListener(v -> {
-            startActivity(settingsIntent);
-        });
+        findViewById(Button.class, R.id.buttonSettings).setOnClickListener(v -> startActivity(settingsIntent));
     }
 
     @Override

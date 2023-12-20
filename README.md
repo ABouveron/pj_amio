@@ -4,6 +4,10 @@ Groupe :
 - Hind Latrache
 - Armand Bouveron
 
+## Sources
+
+GitHub : [pj_amio](https://github.com/ABouveron/pj_amio)
+
 ## Description
 
 L'objectif de ce mini-projet est de finaliser une application Android exploitant des données

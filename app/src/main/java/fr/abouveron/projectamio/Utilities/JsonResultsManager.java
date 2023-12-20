@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonResultsManager {
-    private static List<JsonResults> jsonResults = new ArrayList<>();
+    private static final List<JsonResults> jsonResults = new ArrayList<>();
 
     public static List<JsonResults> getJsonResults() {
         return jsonResults;
